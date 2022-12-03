@@ -1,11 +1,13 @@
 typedef struct Todo {
     int month;          // 월
     int day;            // 일
-    char level[10];     // 중요도
+    int levelnum;       // 중요도 (숫자)
+    char levelsq[10];   // 중요도 (네모)
     char content[50];   // 내용
 }Todo;
 
 Todo * todo;
+int count;      // 작성할 리스트 수
 
 
 /* select.c */
