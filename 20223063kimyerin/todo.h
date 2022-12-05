@@ -7,8 +7,7 @@ typedef struct Todo {
 }Todo;
 
 Todo * todo;
-int count;      // 작성할 리스트 수
-
+int count = 0;      // 총 작성된 리스트 수 
 
 /* select.c */
 void SelectMenu(int opt);   // 메뉴를 출력하고 선택하는 함수

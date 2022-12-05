@@ -13,10 +13,10 @@ void SelectMenu(int opt) {
     scanf("%d", &opt);
 
     switch (opt) {
-    case 1: break;
-    case 2: break;
+    case 1: ListWrite(); break;
+    case 2: ListDelete(); break;
     case 3: SelectSort(); break;
-    case 4: printf("프로그램을 종료합니다."); exit(0); break;
+    case 4: printf("프로그램을 종료합니다."); exit(0);
     default: printf("잘못된 입력입니다."); break;
     }
 }
