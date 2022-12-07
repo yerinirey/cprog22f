@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "todo.h"
 
 /* 메뉴를 보여주고 선택하는 함수 */

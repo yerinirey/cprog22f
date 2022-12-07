@@ -1,3 +1,5 @@
+#define HEADER
+
 typedef struct Todo {
     int month;          // 월
     int day;            // 일
@@ -7,7 +9,7 @@ typedef struct Todo {
 }Todo;
 
 Todo * todo;
-int count = 0;      // 총 작성된 리스트 수 
+int count;      // 총 작성된 리스트 수
 
 /* select.c */
 void SelectMenu(int opt);   // 메뉴를 출력하고 선택하는 함수
