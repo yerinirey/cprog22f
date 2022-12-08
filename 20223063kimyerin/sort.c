@@ -4,18 +4,25 @@
 /* 날짜 순으로 정렬하고 출력하는 함수 */
 void SortbyDate() {
     int i, j, n;
-    Todo * tmp;
+    Todo tmp1, tmp2;
+    // 월 정렬
     for(i = 0; i < count; i++) {
         for(j = i + 1; j < count; j++) {
-            if(todo[i].month > todo[j].month) {     // 월 정렬
-                *tmp = todo[i];
+            if(todo[i].month > todo[j].month) {   
+                tmp1 = todo[i];
                 todo[i] = todo[j];
-                todo[j] = *tmp;
+                todo[j] = tmp1;
             }
-            if(todo[i].day > todo[j].day) {     // 일 정렬
-                *tmp = todo[i];
+        }
+    }
+    
+    // 일 정렬
+    for(i = 0; i < count; i++) {
+        for(j = i + 1; j < count; j++) {
+            if(todo[i].month == todo[j].month && todo[i].day > todo[j].day) {   
+                tmp2 = todo[i];
                 todo[i] = todo[j];
-                todo[j] = *tmp;
+                todo[j] = tmp2;
             }
         }
     }
@@ -24,20 +31,18 @@ void SortbyDate() {
     for(n = 0; n < count; n++) {
         printf("%d / %d\t\t%s\t\t%s\n",todo[n].month, todo[n].day, todo[n].levelsq, todo[n].content);
     }
-
-
 }
 
 /* 중요도 순으로 정렬하는 함수 */
 void SortbyLevel() {
     int i, j, n;
-    Todo * tmp;
+    Todo tmp;
     for(i = 0; i < count; i++) {
         for(j = i + 1; j < count; j++) {
             if(todo[i].levelnum < todo[j].levelnum) {     // 중요도 5 ~ 1 정렬
-                *tmp = todo[i];
+                tmp = todo[i];
                 todo[i] = todo[j];
-                todo[j] = *tmp;
+                todo[j] = tmp;
             }
         }
     }
