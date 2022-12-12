@@ -9,7 +9,7 @@ void SelectMenu(int opt) {
     printf("│                2. 리스트 수정하기                │\n");    
     printf("│                3. 리스트 삭제하기                │\n");
     printf("│                4. 리스트 검색하기(월)            │\n");    
-    printf("│                5. 리스트 조회하기                │\n");
+    printf("│                5. 리스트 조회하기(전체)          │\n");
     printf("│                6. 프로그램 종료하기              │\n");
     printf("└──────────────────────────────────────────────────┘\n");
     printf("메뉴를 선택해주세요.( 1 ~ 6 ): ");
@@ -20,7 +20,7 @@ void SelectMenu(int opt) {
     // case 2: ListEdit(); break;
     case 3: ListDelete(); break;
     case 4: ListSearch(); break;
-    // case 5: SelectSort(); break;
+    case 5: ListPrint(head); break;
     case 6: printf("프로그램을 종료합니다."); exit(0);
     default: printf("잘못된 입력입니다."); break;
     }
@@ -38,8 +38,8 @@ void SelectSort() {
         printf("정렬 방법을 선택해주세요. (1 / 2): ");
         scanf("%d", &opt);
         switch(opt) {
-            case 1: SortbyDate(); break;
-            case 2: SortbyLevel(); break;
+            // case 1: SortbyDate(); break;
+            // case 2: SortbyLevel(); break;
             default: printf("잘못된 입력입니다."); break;
         }
     }

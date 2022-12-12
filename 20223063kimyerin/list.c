@@ -43,6 +43,8 @@ Node* Write(Node* node)
 
         newNode->NEXT = NULL;
         return newNode;
+        printf("=========================================\n");
+        count++;
     }
     node->NEXT = Write(node->NEXT);
     return node;
@@ -60,6 +62,7 @@ Node* Search(Node* node, int month)
     return Search(node->NEXT, month);
 }
 
+/* 날짜를 입력해서 할 일 삭제하는 노드 */
 Node* Delete(Node* node, int delmonth, int delday)
 {
     if (node == NULL) return NULL;
@@ -76,15 +79,14 @@ Node* Delete(Node* node, int delmonth, int delday)
     return node;
 }
 
-
 /* 할 일 작성하는 함수 */
 void ListWrite() {
-    Node* head = NULL;
     int n, i = 0;
     printf("작성할 todo 개수를 입력하세요: ");
     scanf("%d", &n);
     for(i; i < n; i++)
         head = Write(head);
+
 }
 
 /* 월을 입력해서 검색  */
@@ -93,8 +95,10 @@ void ListSearch() {
     printf("조회할 달을 입력하세요: ");
     scanf("%d", &month);
     Node* someNode = Search(head,month);
-    if(someNode != NULL)
-        printf("%d/%d\t중요도:%d\t\t%s\n", someNode->todo->month,someNode->todo->day,someNode->todo->levelnum,someNode->todo->content);
+    if(someNode != NULL) {
+        printf("\n%d/%d\t %s\t내용:%s", someNode->todo->month,someNode->todo->day,someNode->todo->levelsq,someNode->todo->content);
+        someNode->NEXT;
+    }
 }
 
 /* 할 일을 삭제하는 함수 */
@@ -104,13 +108,13 @@ void ListDelete() {
     scanf("%2d%2d", &month, &day);
     head = Delete(head, month, day);
     ListPrint(head);
+    count--;
     }
 
 /* 내용 출력하기 */
 void ListPrint(Node* node)                  
 {
     if (node == NULL) return;
-    
-    printf("\n%d/%d\t %s\t내용:%s",node->todo->month, node->todo->day, node->todo->levelsq, node->todo->content);
+    printf("\n%d/%d\t %s\t내용:%s\n",node->todo->month, node->todo->day, node->todo->levelsq, node->todo->content);
     ListPrint(node->NEXT);
 }

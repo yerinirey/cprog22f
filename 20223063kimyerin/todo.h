@@ -17,24 +17,23 @@ typedef struct Node
 }Node;
 
 Node* head;
-int count;      // 총 작성된 리스트 수
-
+int count;      // 총 리스트 개수
 /* select.c */
 void SelectMenu(int opt);   // 메뉴를 출력하고 선택하는 함수
 void SelectSort();          // 정렬 방법을 선택하는 함수
 
 /* list.c */
-Node* Write(Node* node);                // 할 일을 작성하는 함수
-Node* Search(Node* node, int month);    // 월을 입력해서 검색
+Node* Write(Node* node);                
+Node* Search(Node* node, int month);    
 Node* Delete(Node* node, int delmonth, int delday);
 void ListWrite();
-void ListSearch();
-void ListDelete();          // 할 일을 삭제하는 함수
+void ListSearch();          // 월로 검색
+void ListDelete();          // 할 일 삭제
 void ListPrint(Node * List);
 
 /* sort.c */
-void SortbyDate();          // 날짜 순으로 정렬하는 함수
-void SortbyLevel();         // 중요도 순으로 정렬하는 함수
+void SortbyDate();          // 날짜 순으로 정렬
+void SortbyLevel();         // 중요도 순으로 정렬
 
 /* search.c */
 
