@@ -42,8 +42,6 @@ Node* Write(Node* node)
         printf("=========================================\n");
         newNode->NEXT = NULL;
         return newNode;
-        
-        count++;
     }
     node->NEXT = Write(node->NEXT);
     return node;
@@ -98,12 +96,12 @@ void ListWrite() {
     int n, i = 0;
     printf("작성할 todo 개수를 입력하세요: ");
     scanf("%d", &n);
-
-    for(i; i < n; i++) head = Write(head);
+    for(i; i < n; i++) {head = Write(head); count ++;}
 }
 
 /* 할 일 수정하는 함수 */
 void ListEdit() {
+    if(count == 0) {printf("조회할 리스트가 존재하지 않습니다. 먼저 리스트를 작성해주세요. \n"); return;}
     int month, day;
     printf("수정할 todo의 날짜를 입력하세요(MMDD): ");
     scanf("%2d%2d", &month, &day);
@@ -113,17 +111,19 @@ void ListEdit() {
 
 /* 월을 입력해서 검색  */
 void ListSearch() {
+    if(count == 0) {printf("조회할 리스트가 존재하지 않습니다. 먼저 리스트를 작성해주세요. \n"); return;}
     int month;
     printf("조회할 달을 입력하세요: ");
     scanf("%d", &month);
     Node* someNode = Search(head,month);
     if(someNode != NULL) {
-        printf("\n%d/%d\t %s\t내용:%s", someNode->todo->month,someNode->todo->day,someNode->todo->levelsq,someNode->todo->content);
+        printf("\n%d/%d\t %s\t내용:%s\n", someNode->todo->month,someNode->todo->day,someNode->todo->levelsq,someNode->todo->content);
     }
 }
 
 /* 할 일을 삭제하는 함수 */
 void ListDelete() {
+    if(count == 0) {printf("조회할 리스트가 존재하지 않습니다. 먼저 리스트를 작성해주세요. \n"); return;}
     int month, day;
     printf("삭제할 todo의 날짜를 입력하세요(MMDD): ");
     scanf("%2d%2d", &month, &day);
@@ -140,3 +140,24 @@ void ListPrint(Node* node)
     ListPrint(node->NEXT);
 }
 
+void ListList() {
+    if(count == 0) {printf("조회할 리스트가 존재하지 않습니다. 먼저 리스트를 작성해주세요. \n"); return;}
+    int opt;
+    printf("\n1. 월을 입력해서 조회\n2.전체 조회\n번호를 입력하세요(1,2): ");
+    scanf("%d", &opt);
+    if(opt == 1) ListSearch();
+    else ListPrint(head);
+}
+
+void ListExit() {
+    printf("프로그램을 종료합니다."); 
+    Node * node = head;
+    FILE * fp =  fopen("todo.txt", "wt");
+    if(fp == NULL) printf("failed to open todo.txt\n"); exit(0);
+    while(node != NULL) {
+        fprintf("%d/%d\t%s\t%s\n", node->todo->month,node->todo->day,node->todo->levelsq,node->todo->content);
+        node = node->NEXT;
+    }
+    fclose(fp);
+    exit(0);
+}

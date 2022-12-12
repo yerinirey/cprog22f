@@ -21,7 +21,6 @@ int count;      // 총 리스트 개수
 
 /* select.c */
 void SelectMenu(int opt);   
-void SelectSort();          
 
 /* list.c */
 Node* Write(Node* node);                
@@ -33,9 +32,7 @@ void ListEdit();
 void ListSearch();          
 void ListDelete();          
 void ListPrint(Node * List);
-
-/* txt.c */
-void txtWrite(Node * node);
-void txtRead(Node * node, FILE * fp);
+void ListList();
+void ListExit();
 
 #endif

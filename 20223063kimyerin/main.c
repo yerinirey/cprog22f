@@ -10,7 +10,6 @@ int main() {
     int num;
     while(1) {
         SelectMenu(num);
-        // txtWrite(head);
     }
 }
 
