@@ -3,7 +3,6 @@
 #include <string.h>
 #include "todo.h"
 
-
 /* 할 일을 작성해주는 노드 */
 Node* Write(Node* node)                 
 {
@@ -40,10 +39,10 @@ Node* Write(Node* node)
             case 5: strcpy(newNode->todo->levelsq, "■■■■■"); break;
         }
         strcpy(newNode->todo->content, _content);
-
+        printf("=========================================\n");
         newNode->NEXT = NULL;
         return newNode;
-        printf("=========================================\n");
+        
         count++;
     }
     node->NEXT = Write(node->NEXT);
@@ -79,14 +78,37 @@ Node* Delete(Node* node, int delmonth, int delday)
     return node;
 }
 
+/* 날짜를 입력해서 할 일 수정하는 노드 */
+Node* Edit(Node* node, int month, int day) {
+    if (node == NULL) return NULL;
+	
+    if (node->todo->month == month && node->todo->day == day)
+    {   
+        char newcontent[100];
+        printf("변경할 내용을 입력하세요.");
+        scanf("%s", newcontent);
+        strcpy(node->todo->content, newcontent);
+    }
+    node->NEXT = Edit(node->NEXT, month, day);
+    return node;
+}
+
 /* 할 일 작성하는 함수 */
 void ListWrite() {
     int n, i = 0;
     printf("작성할 todo 개수를 입력하세요: ");
     scanf("%d", &n);
-    for(i; i < n; i++)
-        head = Write(head);
 
+    for(i; i < n; i++) head = Write(head);
+}
+
+/* 할 일 수정하는 함수 */
+void ListEdit() {
+    int month, day;
+    printf("수정할 todo의 날짜를 입력하세요(MMDD): ");
+    scanf("%2d%2d", &month, &day);
+    head = Edit(head, month, day);
+    printf("=================== 수정완료 ===================\n");
 }
 
 /* 월을 입력해서 검색  */
@@ -97,7 +119,6 @@ void ListSearch() {
     Node* someNode = Search(head,month);
     if(someNode != NULL) {
         printf("\n%d/%d\t %s\t내용:%s", someNode->todo->month,someNode->todo->day,someNode->todo->levelsq,someNode->todo->content);
-        someNode->NEXT;
     }
 }
 
@@ -107,7 +128,7 @@ void ListDelete() {
     printf("삭제할 todo의 날짜를 입력하세요(MMDD): ");
     scanf("%2d%2d", &month, &day);
     head = Delete(head, month, day);
-    ListPrint(head);
+    printf("=================== 삭제완료 ===================\n");
     count--;
     }
 
@@ -118,3 +139,4 @@ void ListPrint(Node* node)
     printf("\n%d/%d\t %s\t내용:%s\n",node->todo->month, node->todo->day, node->todo->levelsq, node->todo->content);
     ListPrint(node->NEXT);
 }
+

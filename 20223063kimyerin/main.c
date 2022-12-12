@@ -8,8 +8,9 @@ int main() {
     count = 0;
     head = NULL;        // 초기화
     int num;
-    
     while(1) {
         SelectMenu(num);
+        // txtWrite(head);
     }
 }
+
